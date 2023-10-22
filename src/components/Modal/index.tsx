@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../Button";
 import useCustomerStore from "../../store/useCustomerStore";
 import {
@@ -33,6 +33,22 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
   const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
   const { setShowModal } = useCustomerStore();
 
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleClose = () => {
     setShowModal(false);
   };
@@ -46,7 +62,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
   return (
     <StyledModalOverlay>
-      <StyledModalContainer>
+      <StyledModalContainer ref={modalRef}>
         <h2>Update Customer</h2>
 
         <StyledLabel>Company:</StyledLabel>

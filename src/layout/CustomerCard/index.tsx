@@ -9,6 +9,7 @@ import {
   StyledCustomerInfoWrapper,
   StyledTitle,
   StyledName,
+  StyledIcons,
 } from "./index.styles";
 
 interface CustomerCardProps {
@@ -44,6 +45,10 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
 
   const { showModal, setShowModal } = useCustomerStore();
 
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <StyledCustomerCardWrapper>
       <StyledCustomerInfoWrapper>
@@ -74,8 +79,10 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
         />
       )}
 
-      <FontAwesomeIcon icon={faPenToSquare} />
-      <FontAwesomeIcon icon={faTrash} />
+      <StyledIcons>
+        <FontAwesomeIcon icon={faPenToSquare} size="2x" onClick={handleClick} />
+        <FontAwesomeIcon icon={faTrash} size="2x" />
+      </StyledIcons>
     </StyledCustomerCardWrapper>
   );
 };
