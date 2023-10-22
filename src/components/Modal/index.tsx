@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../Button";
+import useCustomerStore from "../../store/useCustomerStore";
 import {
   StyledButtonWrapper,
   StyledModalOverlay,
@@ -27,10 +28,19 @@ type Customer = {
 const UpdateCustomerModal: React.FC<ModalProps> = ({
   show,
   customer,
-  onClose,
   onSave,
 }) => {
   const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
+  const { setShowModal } = useCustomerStore();
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const handleProjectsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const projects = e.target.value.split("\n");
+    setUpdatedCustomer((prev) => ({ ...prev, projects }));
+  };
 
   if (!show) return null;
 
@@ -66,13 +76,31 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
           }
         />
 
+        <StyledLabel>Active:</StyledLabel>
+        <input
+          type="checkbox"
+          checked={updatedCustomer.isActive}
+          onChange={(e) =>
+            setUpdatedCustomer((prev) => ({
+              ...prev,
+              isActive: e.target.checked,
+            }))
+          }
+        />
+
+        <StyledLabel>Projects (one per line):</StyledLabel>
+        <StyledTextarea
+          value={updatedCustomer.projects.join("\n")}
+          onChange={handleProjectsChange}
+        />
+
         <StyledButtonWrapper>
           <Button
             text="Save"
             onClick={() => onSave(updatedCustomer)}
             color="dark"
           />
-          <Button text="Close" onClick={onClose} color="dark" />
+          <Button text="Close" onClick={handleClose} color="dark" />
         </StyledButtonWrapper>
       </StyledModalContainer>
     </StyledModalOverlay>

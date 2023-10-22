@@ -15,20 +15,20 @@ export const StyledModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 2.5rem;
-  border-radius: 8px;
+  padding: 1.875rem 6.25rem;
+  border-radius: 0.5rem;
 `;
 
 export const StyledInput = styled.input`
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 0.625rem;
+  margin-bottom: 0.625rem;
 `;
 
 export const StyledLabel = styled.label`
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.625rem;
 `;
 
 export const StyledButtonWrapper = styled.div`
@@ -37,10 +37,11 @@ export const StyledButtonWrapper = styled.div`
   gap: 0.625rem;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 50px;
+  padding: 3.125rem;
 `;
 
 export const StyledTextarea = styled.textarea`
   width: 100%;
-  padding: 10px;
+  padding: 0.625rem;
+  margin-bottom: 1.25rem;
 `;

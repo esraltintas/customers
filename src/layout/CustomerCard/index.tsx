@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Modal from "../../components/Modal";
+import useCustomerStore from "../../store/useCustomerStore";
 import {
   StyledCustomerCardWrapper,
   StyledCustomerInfoWrapper,
@@ -33,7 +34,6 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   about,
   projects,
 }) => {
-  const [showModal, setShowModal] = useState<boolean>(true);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>({
     company: "ABC Corp",
     industry: "Tech",
@@ -41,6 +41,8 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
     about: "Some information about the company",
     projects: [],
   });
+
+  const { showModal, setShowModal } = useCustomerStore();
 
   return (
     <StyledCustomerCardWrapper>
