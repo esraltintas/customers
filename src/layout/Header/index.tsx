@@ -9,8 +9,20 @@ function Header() {
 
   const filterOptions = [
     {
-      value: "test",
-      label: "Test",
+      value: "insurance",
+      label: "Insurance",
+    },
+    {
+      value: "travel",
+      label: "Travel",
+    },
+    {
+      value: "tech",
+      label: "Tech",
+    },
+    {
+      value: "marketing",
+      label: "Marketing",
     },
   ];
 

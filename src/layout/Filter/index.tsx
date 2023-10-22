@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Select, { GroupBase, OptionsOrGroups } from "react-select";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import { StyledPlaceholder } from "./index.styles";
 
 interface FilterProps {
   options?: OptionsOrGroups<OptionType, GroupBase<OptionType>> | undefined;
+  onFilterChange: (e: any) => void;
 }
 
 type OptionType = {
@@ -14,16 +15,16 @@ type OptionType = {
   label: string;
 };
 
-const Filter = ({ options }: FilterProps) => {
+const Filter = ({ options, onFilterChange }: FilterProps) => {
   console.log(options);
-  /*   const [selectedOption, setSelectedOption] = useState<string>(null);
-   */
-  /*   const handleSortChange = (selected: React.SetStateAction<null>) => {
-    setSelectedOption(selected);
-    if (onSortChange) {
-        onFilterChange(selected);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const handleFilterChange = (selected: OptionType | null) => {
+    setSelectedOption(selected ? selected.value : null);
+    if (onFilterChange) {
+      onFilterChange(selected);
     }
-  }; */
+  };
 
   return (
     <div>
@@ -38,17 +39,19 @@ const Filter = ({ options }: FilterProps) => {
           }),
         }}
         options={options}
+        isMulti
         placeholder={
           <StyledPlaceholder>
             <div>
               <FontAwesomeIcon icon={faArrowUp} />
               <FontAwesomeIcon icon={faArrowDown} />
             </div>
-            <div>Filter by</div>
+            <div>Filter by Industry</div>
           </StyledPlaceholder>
         }
         className="sort-dropdown"
         isSearchable={false}
+        onChange={handleFilterChange}
         getOptionLabel={(option: OptionType) => option.label}
       />
     </div>
