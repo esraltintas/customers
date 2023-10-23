@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Modal from "../../components/Modal";
+import Dropdown from "../../components/Dropdown";
 import useCustomerStore from "../../store/useCustomerStore";
 import {
   StyledCustomerCardWrapper,
@@ -20,12 +21,20 @@ interface CustomerCardProps {
   projects: string[];
 }
 
+type Project = {
+  id: string;
+  name: string;
+  contact: string | null;
+  start_date: string;
+  end_date: string | null;
+};
+
 type Customer = {
   company: string;
   industry: string;
   isActive: boolean;
   about: string;
-  projects: string[];
+  projects: Project[];
 };
 
 const CustomerCard: React.FC<CustomerCardProps> = ({
@@ -35,6 +44,8 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   about,
   projects,
 }) => {
+  const [selectedProject, setSelectedProject] = useState("");
+
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>({
     company: "ABC Corp",
     industry: "Tech",
@@ -48,6 +59,17 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   const handleClick = () => {
     setShowModal(true);
   };
+
+  const handleChangeProject = (project: { label: any }) => {
+    console.log(project);
+    const selectedValue = project ? project.label : null;
+    setSelectedProject(selectedValue);
+  };
+
+  const transformedProjects = projects.map((project) => ({
+    value: project?.id,
+    label: project?.name,
+  }));
 
   return (
     <StyledCustomerCardWrapper>
@@ -66,6 +88,14 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       <StyledCustomerInfoWrapper>
         <StyledTitle>About</StyledTitle>
         <StyledName data-title={about}>{about}</StyledName>
+      </StyledCustomerInfoWrapper>
+
+      <StyledCustomerInfoWrapper>
+        <Dropdown
+          placeholder="Projects"
+          options={transformedProjects}
+          onChange={handleChangeProject}
+        />
       </StyledCustomerInfoWrapper>
       {showModal && (
         <Modal

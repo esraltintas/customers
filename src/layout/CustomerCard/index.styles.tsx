@@ -1,27 +1,32 @@
 import styled from "@emotion/styled";
 
 export const StyledCustomerCardWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 1.875rem;
+  display: grid;
+  grid-template-columns: 20% 10% 10% 30% 15% 15%;
+  gap: 20px;
   padding: 1.5625rem 5rem;
   font-size: 0.625rem;
   font-weight: bold;
   background-color: #fff;
   margin: 1.25rem;
   max-height: 80px;
+  max-width: 1200px;
   border-radius: 0.3125rem;
   border: 1px solid #adc4ce;
 `;
 
 export const StyledCustomerInfoWrapper = styled.div`
   display: flex;
-  justify-content: start;
   flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  align-content: center;
 `;
 
 export const StyledTitle = styled.div`
   font-size: 0.625rem;
+  padding-bottom: 1.25rem;
+  max-height: 10px;
 `;
 export const StyledName = styled.div`
   font-size: 0.9375rem;
@@ -29,7 +34,7 @@ export const StyledName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 200px;
+  width: 350px;
   position: relative;
 
   &:hover::after {

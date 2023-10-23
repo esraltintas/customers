@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Container } from "../components/Grid";
 import CustomerCard from "../layout/CustomerCard";
 import useCustomerStore from "../store/useCustomerStore";
+import { StyledCustomerWrapper } from "./index.styles";
 
 type Project = {
   id: string;
@@ -57,7 +57,7 @@ function Customers() {
   }, [selectedIndustries, customers]);
 
   return (
-    <Container>
+    <StyledCustomerWrapper>
       {filteredCustomers.map((item) => (
         <CustomerCard
           key={item.id}
@@ -70,7 +70,7 @@ function Customers() {
       ))}
 
       <Suspense fallback={<div>Loading...</div>}></Suspense>
-    </Container>
+    </StyledCustomerWrapper>
   );
 }
 
