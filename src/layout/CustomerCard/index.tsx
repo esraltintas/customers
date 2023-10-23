@@ -50,7 +50,8 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   const { selectedCustomer, setSelectedCustomer, newFilteredCustomers } =
     useCustomerStore();
 
-  const { showModal, setShowModal } = useCustomerStore();
+  const { showModalCustomerCard, setShowModalCustomerCard } =
+    useCustomerStore();
 
   const handleEditClick = () => {
     setSelectedCustomer({
@@ -61,7 +62,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       about: about,
       projects: projects,
     });
-    setShowModal(true);
+    setShowModalCustomerCard(true);
   };
 
   const handleDeleteClick = () => {
@@ -141,15 +142,16 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
           onChange={handleChangeProject}
         />
       </StyledCustomerInfoWrapper>
-      {showModal && (
+      {showModalCustomerCard && (
         <Modal
-          show={showModal}
+          title="Update Customer"
+          show={showModalCustomerCard}
           customer={selectedCustomer}
-          onClose={() => setShowModal(false)}
+          onClose={() => setShowModalCustomerCard(false)}
           onSave={(updatedCustomer) => {
             updateCustomer(updatedCustomer);
             setSelectedCustomer(updatedCustomer);
-            setShowModal(false);
+            setShowModalCustomerCard(false);
           }}
         />
       )}

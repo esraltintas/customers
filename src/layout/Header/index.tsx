@@ -5,7 +5,7 @@ import useCustomerStore from "../../store/useCustomerStore";
 
 import { StyledHeaderWrapper, StyledHeaderTitle } from "./index.styles";
 function Header() {
-  const { setShowModal } = useCustomerStore();
+  const { setShowModalCreate } = useCustomerStore();
 
   const filterOptions = [
     {
@@ -27,7 +27,7 @@ function Header() {
   ];
 
   const handleClick = () => {
-    setShowModal(true);
+    setShowModalCreate(true);
   };
   return (
     <StyledHeaderWrapper>

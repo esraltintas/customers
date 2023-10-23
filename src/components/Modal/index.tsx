@@ -11,6 +11,7 @@ import {
 } from "./index.styles";
 
 interface ModalProps {
+  title: string;
   show: boolean;
   customer: Customer;
   onClose: () => void;
@@ -26,16 +27,13 @@ type Customer = {
 };
 
 const UpdateCustomerModal: React.FC<ModalProps> = ({
+  title,
   show,
   customer,
   onSave,
+  onClose,
 }) => {
-  const { setShowModal, selectedCustomer, setSelectedCustomer } =
-    useCustomerStore();
-
-  const handleClose = () => {
-    setShowModal(false);
-  };
+  const { selectedCustomer, setSelectedCustomer } = useCustomerStore();
 
   const handleProjectsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const projects = e.target.value.split("\n");
@@ -47,11 +45,11 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
   return (
     <StyledModalOverlay>
       <StyledModalContainer>
-        <h2>Update Customer</h2>
+        <h2>{title}</h2>
 
         <StyledLabel>Company:</StyledLabel>
         <StyledInput
-          value={selectedCustomer.company}
+          value={customer.company}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -62,7 +60,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Industry:</StyledLabel>
         <StyledInput
-          value={selectedCustomer.industry}
+          value={customer.industry}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -73,7 +71,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>About:</StyledLabel>
         <StyledTextarea
-          value={selectedCustomer.about}
+          value={customer.about}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -85,7 +83,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
         <StyledLabel>Active:</StyledLabel>
         <input
           type="checkbox"
-          checked={selectedCustomer.isActive}
+          checked={customer.isActive}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -96,7 +94,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Projects (one per line):</StyledLabel>
         <StyledTextarea
-          value={selectedCustomer.projects.join("\n")}
+          value={customer.projects.join("\n")}
           onChange={handleProjectsChange}
         />
 
@@ -106,7 +104,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
             onClick={() => onSave(selectedCustomer)}
             color="dark"
           />
-          <Button text="Close" onClick={handleClose} color="dark" />
+          <Button text="Close" onClick={onClose} color="dark" />
         </StyledButtonWrapper>
       </StyledModalContainer>
     </StyledModalOverlay>

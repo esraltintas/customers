@@ -2,7 +2,7 @@
   "customers": [
     {
       "id": "1798e668-8eb3-424f-8af7-6e6da2515b14",
-      "isActive": true,
+      "isActive": false,
       "company": "Doyle-Kessler",
       "industry": "travell",
       "projects": [

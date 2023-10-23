@@ -33,8 +33,10 @@ type CustomerStore = {
   ) => void;
   selectedOption: OptionType | null;
   setSelectedOption: (selectedOption: OptionType) => void;
-  showModal: boolean;
-  setShowModal: (showModal: boolean) => void;
+  showModalCustomerCard: boolean;
+  setShowModalCustomerCard: (showModalCustomerCard: boolean) => void;
+  showModalCreate: boolean;
+  setShowModalCreate: (showModalCreate: boolean) => void;
 };
 
 const useCustomerStore = create<CustomerStore>((set) => ({
@@ -45,8 +47,11 @@ const useCustomerStore = create<CustomerStore>((set) => ({
   setSelectedOption: (selectedOptionArr: OptionType) =>
     set({ selectedOption: selectedOptionArr }),
 
-  showModal: false,
-  setShowModal: (showModal: boolean) => set({ showModal }),
+  showModalCustomerCard: false,
+  setShowModalCustomerCard: (showModalCustomerCard: boolean) =>
+    set({ showModalCustomerCard }),
+  showModalCreate: false,
+  setShowModalCreate: (showModalCreate: boolean) => set({ showModalCreate }),
 
   selectedCustomer: {
     id: "",
