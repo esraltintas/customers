@@ -26,6 +26,11 @@ type Customer = {
 type CustomerStore = {
   filteredCustomers: Customer[];
   newFilteredCustomers: (newCustomersArray: Customer[]) => void;
+
+  selectedCustomer: Customer;
+  setSelectedCustomer: (
+    updateFunctionOrValue: ((prev: Customer) => Customer) | Customer
+  ) => void;
   selectedOption: OptionType | null;
   setSelectedOption: (selectedOption: OptionType) => void;
   showModal: boolean;
@@ -42,6 +47,24 @@ const useCustomerStore = create<CustomerStore>((set) => ({
 
   showModal: false,
   setShowModal: (showModal: boolean) => set({ showModal }),
+
+  selectedCustomer: {
+    id: "",
+    company: "",
+    industry: "",
+    isActive: true,
+    about: "",
+    projects: [],
+  },
+  setSelectedCustomer: (updateFunctionOrValue) => {
+    if (typeof updateFunctionOrValue === "function") {
+      set((state) => ({
+        selectedCustomer: updateFunctionOrValue(state.selectedCustomer),
+      }));
+    } else {
+      set({ selectedCustomer: updateFunctionOrValue });
+    }
+  },
 }));
 
 export default useCustomerStore;

@@ -17,7 +17,6 @@ type OptionType = {
 };
 
 const Filter = ({ options, onFilterChange }: FilterProps) => {
-  console.log("filter", options);
   const { setSelectedOption } = useCustomerStore();
 
   const handleFilterChange = (selected: OptionType) => {

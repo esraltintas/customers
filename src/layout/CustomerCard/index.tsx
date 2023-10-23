@@ -45,23 +45,23 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   projects,
 }) => {
   const [selectedProject, setSelectedProject] = useState("");
-
-  const [selectedCustomer, setSelectedCustomer] = useState<Customer>({
-    company: "ABC Corp",
-    industry: "Tech",
-    isActive: true,
-    about: "Some information about the company",
-    projects: [],
-  });
+  const { selectedCustomer, setSelectedCustomer } = useCustomerStore();
 
   const { showModal, setShowModal } = useCustomerStore();
 
-  const handleClick = () => {
+  const handleEditClick = () => {
+    console.log("test");
+    setSelectedCustomer({
+      company: company,
+      industry: industry,
+      isActive: isActive,
+      about: about,
+      projects: projects,
+    });
     setShowModal(true);
   };
 
   const handleChangeProject = (project: { label: any }) => {
-    console.log(project);
     const selectedValue = project ? project.label : null;
     setSelectedProject(selectedValue);
   };
@@ -110,7 +110,11 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       )}
 
       <StyledIcons>
-        <FontAwesomeIcon icon={faPenToSquare} size="2x" onClick={handleClick} />
+        <FontAwesomeIcon
+          icon={faPenToSquare}
+          size="2x"
+          onClick={handleEditClick}
+        />
         <FontAwesomeIcon icon={faTrash} size="2x" />
       </StyledIcons>
     </StyledCustomerCardWrapper>

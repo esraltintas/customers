@@ -30,8 +30,8 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
   customer,
   onSave,
 }) => {
-  const [updatedCustomer, setUpdatedCustomer] = useState<Customer>(customer);
-  const { setShowModal } = useCustomerStore();
+  const { setShowModal, selectedCustomer, setSelectedCustomer } =
+    useCustomerStore();
 
   const handleClose = () => {
     setShowModal(false);
@@ -39,10 +39,12 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
   const handleProjectsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const projects = e.target.value.split("\n");
-    setUpdatedCustomer((prev) => ({ ...prev, projects }));
+    setSelectedCustomer((prev: any) => ({ ...prev, projects }));
   };
 
   if (!show) return null;
+
+  console.log(selectedCustomer);
 
   return (
     <StyledModalOverlay>
@@ -51,17 +53,20 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Company:</StyledLabel>
         <StyledInput
-          value={updatedCustomer.company}
+          value={selectedCustomer.company}
           onChange={(e) =>
-            setUpdatedCustomer((prev) => ({ ...prev, company: e.target.value }))
+            setSelectedCustomer((prev: any) => ({
+              ...prev,
+              company: e.target.value,
+            }))
           }
         />
 
         <StyledLabel>Industry:</StyledLabel>
         <StyledInput
-          value={updatedCustomer.industry}
+          value={selectedCustomer.industry}
           onChange={(e) =>
-            setUpdatedCustomer((prev) => ({
+            setSelectedCustomer((prev: any) => ({
               ...prev,
               industry: e.target.value,
             }))
@@ -70,18 +75,21 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>About:</StyledLabel>
         <StyledTextarea
-          value={updatedCustomer.about}
+          value={selectedCustomer.about}
           onChange={(e) =>
-            setUpdatedCustomer((prev) => ({ ...prev, about: e.target.value }))
+            setSelectedCustomer((prev: any) => ({
+              ...prev,
+              about: e.target.value,
+            }))
           }
         />
 
         <StyledLabel>Active:</StyledLabel>
         <input
           type="checkbox"
-          checked={updatedCustomer.isActive}
+          checked={selectedCustomer.isActive}
           onChange={(e) =>
-            setUpdatedCustomer((prev) => ({
+            setSelectedCustomer((prev: any) => ({
               ...prev,
               isActive: e.target.checked,
             }))
@@ -90,14 +98,14 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Projects (one per line):</StyledLabel>
         <StyledTextarea
-          value={updatedCustomer.projects.join("\n")}
+          value={selectedCustomer.projects.join("\n")}
           onChange={handleProjectsChange}
         />
 
         <StyledButtonWrapper>
           <Button
             text="Save"
-            onClick={() => onSave(updatedCustomer)}
+            onClick={() => onSave(selectedCustomer)}
             color="dark"
           />
           <Button text="Close" onClick={handleClose} color="dark" />
