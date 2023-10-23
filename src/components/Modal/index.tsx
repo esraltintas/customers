@@ -44,8 +44,6 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
   if (!show) return null;
 
-  console.log(selectedCustomer);
-
   return (
     <StyledModalOverlay>
       <StyledModalContainer>

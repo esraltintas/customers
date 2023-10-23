@@ -14,6 +14,7 @@ import {
 } from "./index.styles";
 
 interface CustomerCardProps {
+  id: string;
   company: string;
   industry: string;
   isActive: boolean;
@@ -38,6 +39,7 @@ type Customer = {
 };
 
 const CustomerCard: React.FC<CustomerCardProps> = ({
+  id,
   company,
   industry,
   isActive,
@@ -45,13 +47,14 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   projects,
 }) => {
   const [selectedProject, setSelectedProject] = useState("");
-  const { selectedCustomer, setSelectedCustomer } = useCustomerStore();
+  const { selectedCustomer, setSelectedCustomer, newFilteredCustomers } =
+    useCustomerStore();
 
   const { showModal, setShowModal } = useCustomerStore();
 
   const handleEditClick = () => {
-    console.log("test");
     setSelectedCustomer({
+      id: id,
       company: company,
       industry: industry,
       isActive: isActive,
@@ -59,6 +62,10 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       projects: projects,
     });
     setShowModal(true);
+  };
+
+  const handleDeleteClick = () => {
+    deleteCustomer(id);
   };
 
   const handleChangeProject = (project: { label: any }) => {
@@ -70,6 +77,43 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
     value: project?.id,
     label: project?.name,
   }));
+
+  const fetchAllCustomers = () => {
+    fetch("http://localhost:3001/customers")
+      .then((response) => response.json())
+      .then((data) => newFilteredCustomers(data))
+      .catch((error) => console.error("Error fetching all customers:", error));
+  };
+
+  const deleteCustomer = (customerId: string) => {
+    fetch(`http://localhost:3001/customers/${customerId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        fetchAllCustomers();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const updateCustomer = (updatedCustomer: Customer) => {
+    fetch(`http://localhost:3001/customers/${updatedCustomer.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedCustomer),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Updated Customer:", data);
+
+        fetchAllCustomers();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
 
   return (
     <StyledCustomerCardWrapper>
@@ -103,6 +147,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
           customer={selectedCustomer}
           onClose={() => setShowModal(false)}
           onSave={(updatedCustomer) => {
+            updateCustomer(updatedCustomer);
             setSelectedCustomer(updatedCustomer);
             setShowModal(false);
           }}
@@ -115,7 +160,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
           size="2x"
           onClick={handleEditClick}
         />
-        <FontAwesomeIcon icon={faTrash} size="2x" />
+        <FontAwesomeIcon icon={faTrash} size="2x" onClick={handleDeleteClick} />
       </StyledIcons>
     </StyledCustomerCardWrapper>
   );

@@ -61,6 +61,7 @@ function Customers() {
       {filteredCustomers.map((item) => (
         <CustomerCard
           key={item.id}
+          id={item.id}
           company={item?.company}
           industry={item?.industry}
           isActive={item?.isActive}
