@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+### STEPS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clone this repository and install the dependencies using `yarn install` or `npm install`
+2. `npm run dev`
+3. `npm run server` - Runs the server
 
-Currently, two official plugins are available:
+#### Frameworks used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React - Frontend.
 
-## Expanding the ESLint configuration
+styled-components - CSS-in-JS tool that strikes a balance between components and styling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+styled-system - CSS utility library
 
-- Configure the top-level `parserOptions` property like this:
+styled-bootstrap-grid - for table view
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+zustand - A small, fast and scalable bearbones state-management solution using simplified flux principles
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Eslint - Code styling and lynting.
+
+Husky - To ensure unit tests wont fail on code commit
+
+You can choose Outbound Date: 12 Sep 2023, Return Date: 15 Sep 2023, BER TO ESB
