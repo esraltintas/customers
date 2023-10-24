@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -47,11 +47,30 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   projects,
 }) => {
   const [selectedProject, setSelectedProject] = useState("");
-  const { selectedCustomer, setSelectedCustomer, newFilteredCustomers } =
-    useCustomerStore();
+  const {
+    showModalCreate,
+    setShowModalCreate,
+    showModalCustomerCard,
+    setShowModalCustomerCard,
+    selectedCustomer,
+    setSelectedCustomer,
+    newFilteredCustomers,
+  } = useCustomerStore();
 
-  const { showModalCustomerCard, setShowModalCustomerCard } =
-    useCustomerStore();
+  const emptyCustomer = {
+    id: "",
+    company: "",
+    industry: "",
+    isActive: false,
+    about: "",
+    projects: [],
+  };
+
+  useEffect(() => {
+    if (showModalCreate) {
+      setSelectedCustomer(emptyCustomer);
+    }
+  }, [showModalCreate]);
 
   const handleEditClick = () => {
     setSelectedCustomer({
@@ -116,6 +135,23 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       .catch((error) => console.error("Error:", error));
   };
 
+  const createCustomer = (newCustomer: Customer) => {
+    fetch(`http://localhost:3001/customers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCustomer),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Updated Customer:", data);
+
+        fetchAllCustomers();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
   return (
     <StyledCustomerCardWrapper>
       <StyledCustomerInfoWrapper>
@@ -152,6 +188,19 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
             updateCustomer(updatedCustomer);
             setSelectedCustomer(updatedCustomer);
             setShowModalCustomerCard(false);
+          }}
+        />
+      )}
+
+      {showModalCreate && (
+        <Modal
+          title="New Customer"
+          show={showModalCreate}
+          customer={selectedCustomer}
+          onClose={() => setShowModalCreate(false)}
+          onSave={(newCustomer) => {
+            createCustomer(newCustomer);
+            setShowModalCreate(false);
           }}
         />
       )}

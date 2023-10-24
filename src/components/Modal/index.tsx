@@ -49,7 +49,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Company:</StyledLabel>
         <StyledInput
-          value={customer.company}
+          value={selectedCustomer.company}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -60,7 +60,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Industry:</StyledLabel>
         <StyledInput
-          value={customer.industry}
+          value={selectedCustomer.industry}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -71,7 +71,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>About:</StyledLabel>
         <StyledTextarea
-          value={customer.about}
+          value={selectedCustomer.about}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -83,7 +83,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
         <StyledLabel>Active:</StyledLabel>
         <input
           type="checkbox"
-          checked={customer.isActive}
+          checked={selectedCustomer.isActive}
           onChange={(e) =>
             setSelectedCustomer((prev: any) => ({
               ...prev,
@@ -94,7 +94,7 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
 
         <StyledLabel>Projects (one per line):</StyledLabel>
         <StyledTextarea
-          value={customer.projects.join("\n")}
+          value={selectedCustomer.projects.join("\n")}
           onChange={handleProjectsChange}
         />
 

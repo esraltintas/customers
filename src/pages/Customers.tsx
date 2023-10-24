@@ -22,24 +22,10 @@ type Customer = {
 };
 
 function Customers() {
-  const {
-    showModalCreate,
-    setShowModalCreate,
-    filteredCustomers,
-    newFilteredCustomers,
-    selectedOption,
-  } = useCustomerStore();
+  const { filteredCustomers, newFilteredCustomers, selectedOption } =
+    useCustomerStore();
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
-
-  const emptyCustomer = {
-    id: "",
-    company: "",
-    industry: "",
-    isActive: false,
-    about: "",
-    projects: [],
-  };
 
   useEffect(() => {
     fetch("http://localhost:3001/customers")
@@ -84,19 +70,6 @@ function Customers() {
           projects={item?.projects}
         />
       ))}
-
-      {showModalCreate && (
-        <Modal
-          show={showModalCreate}
-          customer={emptyCustomer}
-          title="New Customer"
-          onClose={() => setShowModalCreate(false)}
-          onSave={(newCustomer) => {
-            console.log(newCustomer);
-            setShowModalCreate(false);
-          }}
-        />
-      )}
 
       <Suspense fallback={<div>Loading...</div>}></Suspense>
     </StyledCustomerWrapper>

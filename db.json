@@ -3,7 +3,7 @@
     {
       "id": "1798e668-8eb3-424f-8af7-6e6da2515b14",
       "isActive": false,
-      "company": "Doyle-Kessler",
+      "company": "Doyle-Kess",
       "industry": "travell",
       "projects": [
         {
@@ -351,6 +351,14 @@
         }
       ],
       "about": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum."
+    },
+    {
+      "id": "k4OIDYd",
+      "company": "test",
+      "industry": "",
+      "isActive": false,
+      "about": "",
+      "projects": []
     }
   ]
 }
