@@ -8,6 +8,7 @@ import {
   StyledLabel,
   StyledInput,
   StyledTextarea,
+  StyledStatusWrapper,
 } from "./index.styles";
 
 interface ModalProps {
@@ -29,16 +30,10 @@ type Customer = {
 const UpdateCustomerModal: React.FC<ModalProps> = ({
   title,
   show,
-  customer,
   onSave,
   onClose,
 }) => {
   const { selectedCustomer, setSelectedCustomer } = useCustomerStore();
-
-  const handleProjectsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const projects = e.target.value.split("\n");
-    setSelectedCustomer((prev: any) => ({ ...prev, projects }));
-  };
 
   if (!show) return null;
 
@@ -80,23 +75,19 @@ const UpdateCustomerModal: React.FC<ModalProps> = ({
           }
         />
 
-        <StyledLabel>Active:</StyledLabel>
-        <input
-          type="checkbox"
-          checked={selectedCustomer.isActive}
-          onChange={(e) =>
-            setSelectedCustomer((prev: any) => ({
-              ...prev,
-              isActive: e.target.checked,
-            }))
-          }
-        />
-
-        <StyledLabel>Projects (one per line):</StyledLabel>
-        <StyledTextarea
-          value={selectedCustomer.projects.join("\n")}
-          onChange={handleProjectsChange}
-        />
+        <StyledStatusWrapper>
+          <StyledLabel>Active:</StyledLabel>
+          <input
+            type="checkbox"
+            checked={selectedCustomer.isActive}
+            onChange={(e) =>
+              setSelectedCustomer((prev: any) => ({
+                ...prev,
+                isActive: e.target.checked,
+              }))
+            }
+          />
+        </StyledStatusWrapper>
 
         <StyledButtonWrapper>
           <Button

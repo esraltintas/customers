@@ -7,6 +7,7 @@ export const StyledModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.08);
+  z-index: 1;
 `;
 
 export const StyledModalContainer = styled.div`
@@ -44,4 +45,11 @@ export const StyledTextarea = styled.textarea`
   width: 100%;
   padding: 0.625rem;
   margin-bottom: 1.25rem;
+`;
+
+export const StyledStatusWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.625rem;
 `;

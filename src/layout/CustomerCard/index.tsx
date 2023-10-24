@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faTrash,
+  faUndo,
+} from "@fortawesome/free-solid-svg-icons";
 import Modal from "../../components/Modal";
 import Dropdown from "../../components/Dropdown";
 import useCustomerStore from "../../store/useCustomerStore";
@@ -20,6 +24,7 @@ interface CustomerCardProps {
   isActive: boolean;
   about: string;
   projects: string[];
+  isDeleted?: boolean;
 }
 
 type Project = {
@@ -45,6 +50,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   isActive,
   about,
   projects,
+  isDeleted = false,
 }) => {
   const [selectedProject, setSelectedProject] = useState("");
   const {
@@ -55,6 +61,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
     selectedCustomer,
     setSelectedCustomer,
     newFilteredCustomers,
+    newFilteredRemovedCustomers,
   } = useCustomerStore();
 
   const emptyCustomer = {
@@ -85,7 +92,38 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   };
 
   const handleDeleteClick = () => {
-    deleteCustomer(id);
+    const isConfirmed = window.confirm("Do you want to remove this item?");
+    if (isConfirmed) {
+      deleteCustomer(id);
+      addRemovedCustomer({
+        id: id,
+        company: company,
+        industry: industry,
+        isActive: isActive,
+        about: about,
+        projects: projects,
+        isDeleted: true,
+      });
+    } else {
+      console.log("Removal canceled.");
+    }
+  };
+
+  const handleUndoClick = () => {
+    const isConfirmed = window.confirm("Do you want to undo this item?");
+    if (isConfirmed) {
+      deleteRemovedCustomer(id);
+      createCustomer({
+        id: id,
+        company: company,
+        industry: industry,
+        isActive: isActive,
+        about: about,
+        projects: projects,
+      });
+    } else {
+      console.log("Removal canceled.");
+    }
   };
 
   const handleChangeProject = (project: { label: any }) => {
@@ -101,7 +139,16 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
   const fetchAllCustomers = () => {
     fetch("http://localhost:3001/customers")
       .then((response) => response.json())
-      .then((data) => newFilteredCustomers(data))
+      .then((data) => {
+        newFilteredCustomers(data);
+      })
+      .catch((error) => console.error("Error fetching all customers:", error));
+  };
+
+  const fetchAllRemovedCustomers = () => {
+    fetch("http://localhost:3001/removedCustomers")
+      .then((response) => response.json())
+      .then((data) => newFilteredRemovedCustomers(data))
       .catch((error) => console.error("Error fetching all customers:", error));
   };
 
@@ -114,6 +161,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
           throw new Error("Network response was not ok");
         }
         fetchAllCustomers();
+        fetchAllRemovedCustomers();
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -131,6 +179,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
         console.log("Updated Customer:", data);
 
         fetchAllCustomers();
+        fetchAllRemovedCustomers();
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -148,6 +197,39 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
         console.log("Updated Customer:", data);
 
         fetchAllCustomers();
+        fetchAllRemovedCustomers();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const addRemovedCustomer = (newCustomer: Customer) => {
+    fetch(`http://localhost:3001/removedCustomers`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCustomer),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Add removed Customer:", data);
+
+        newFilteredRemovedCustomers(data);
+        fetchAllRemovedCustomers();
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const deleteRemovedCustomer = (customerId: string) => {
+    fetch(`http://localhost:3001/removedCustomers/${customerId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        fetchAllCustomers();
+        fetchAllRemovedCustomers();
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -206,12 +288,22 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
       )}
 
       <StyledIcons>
-        <FontAwesomeIcon
-          icon={faPenToSquare}
-          size="2x"
-          onClick={handleEditClick}
-        />
-        <FontAwesomeIcon icon={faTrash} size="2x" onClick={handleDeleteClick} />
+        {!isDeleted ? (
+          <>
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              size="2x"
+              onClick={handleEditClick}
+            />
+            <FontAwesomeIcon
+              icon={faTrash}
+              size="2x"
+              onClick={handleDeleteClick}
+            />
+          </>
+        ) : (
+          <FontAwesomeIcon icon={faUndo} size="2x" onClick={handleUndoClick} />
+        )}
       </StyledIcons>
     </StyledCustomerCardWrapper>
   );

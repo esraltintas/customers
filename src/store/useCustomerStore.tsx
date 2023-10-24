@@ -23,9 +23,24 @@ type Customer = {
   about: string;
 };
 
+type RemovedCustomer = {
+  id: string;
+  isActive: boolean;
+  company: string;
+  industry: string;
+  projects: Project[];
+  about: string;
+  isDeleted: boolean;
+};
+
 type CustomerStore = {
   filteredCustomers: Customer[];
   newFilteredCustomers: (newCustomersArray: Customer[]) => void;
+
+  filteredRemovedCustomers: RemovedCustomer[];
+  newFilteredRemovedCustomers: (
+    newRemovedCustomersArray: RemovedCustomer[]
+  ) => void;
 
   selectedCustomer: Customer;
   setSelectedCustomer: (
@@ -43,6 +58,9 @@ const useCustomerStore = create<CustomerStore>((set) => ({
   filteredCustomers: [],
   newFilteredCustomers: (newCustomersArray: Customer[]) =>
     set({ filteredCustomers: newCustomersArray }),
+  filteredRemovedCustomers: [],
+  newFilteredRemovedCustomers: (newRemovedCustomersArray: RemovedCustomer[]) =>
+    set({ filteredRemovedCustomers: newRemovedCustomersArray }),
   selectedOption: null,
   setSelectedOption: (selectedOptionArr: OptionType) =>
     set({ selectedOption: selectedOptionArr }),

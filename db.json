@@ -1,59 +1,6 @@
 {
   "customers": [
     {
-      "id": "1798e668-8eb3-424f-8af7-6e6da2515b14",
-      "isActive": false,
-      "company": "Doyle-Kess",
-      "industry": "travell",
-      "projects": [
-        {
-          "id": "e25fc621-1aed-4898-9714-090f300c75c8",
-          "name": "Grass-roots",
-          "contact": "fsimony1@hostgator.com",
-          "start_date": "2021-10-05T07:33:02Z",
-          "end_date": "2022-05-30T10:40:32Z"
-        },
-        {
-          "id": "64c726d0-c9a2-4a8f-a775-4340da21c721",
-          "name": "dynamic",
-          "contact": "lallibon2@bloglines.com",
-          "start_date": "2022-01-05T11:54:14Z",
-          "end_date": "2022-03-31T17:50:50Z"
-        },
-        {
-          "id": "fa93c65a-0433-479f-bcaa-27fab7b5c57d",
-          "name": "Ergonomic",
-          "contact": "shyslop3@usatoday.com",
-          "start_date": "2021-12-03T22:51:58Z",
-          "end_date": null
-        }
-      ],
-      "about": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc."
-    },
-    {
-      "id": "6c855520-58f0-47a1-8636-21268959e763",
-      "isActive": false,
-      "company": "Abbott, Ullrich and Durgan",
-      "industry": "tech",
-      "projects": [
-        {
-          "id": "4653f575-ae02-4d4b-b938-fc32a77f2196",
-          "name": "bifurcated",
-          "contact": "bmose4@domainmarket.com",
-          "start_date": "2022-02-07T14:38:55Z",
-          "end_date": "2022-04-08T17:10:10Z"
-        },
-        {
-          "id": "5a007770-c624-4b07-a010-03637a56a569",
-          "name": "Expanded",
-          "contact": "gneary5@vkontakte.ru",
-          "start_date": "2021-11-16T23:08:06Z",
-          "end_date": "2022-06-17T21:27:34Z"
-        }
-      ],
-      "about": "Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi."
-    },
-    {
       "id": "ea8294be-562d-4196-9329-79560ce84a5e",
       "isActive": true,
       "company": "Bahringer, Rice and Dach",
@@ -292,7 +239,7 @@
     {
       "id": "96cdb02e-3c21-44ce-93ea-e3b458c55061",
       "isActive": true,
-      "company": "Mohr, Wyman and Hintz",
+      "company": "Mohr, Wyman and Hint",
       "industry": "finance",
       "projects": [
         {
@@ -314,10 +261,108 @@
       "about": "Nulla tellus."
     },
     {
-      "id": "f9c1e893-4408-4933-bdf8-bafca58da854",
+      "id": "Na82SY_",
+      "company": "test",
+      "industry": "test",
       "isActive": true,
+      "about": "test",
+      "projects": [
+        "test"
+      ]
+    },
+    {
+      "id": "0f59db8f-4f8d-4eba-b87f-e7304c89d3b8",
+      "company": "Kutch Inc",
+      "industry": "marketing",
+      "isActive": true,
+      "about": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.",
+      "projects": [
+        {
+          "id": "7410fb20-994a-4afa-a185-2d0404673e0d",
+          "name": "Customer-focused",
+          "contact": null,
+          "start_date": "2021-10-20T19:28:03Z",
+          "end_date": null
+        }
+      ]
+    },
+    {
+      "id": "40c0bad7-f1a6-4173-bd44-7ebef044905d",
+      "company": "Abbott, Olson and Moen",
+      "industry": "insurance",
+      "isActive": false,
+      "about": "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
+      "projects": [
+        {
+          "id": "69812942-9b25-4eb1-8fe2-7b3709f9b29e",
+          "name": "User-friendly",
+          "contact": "ldodamead0@wikipedia.org",
+          "start_date": "2021-10-26T03:45:04Z",
+          "end_date": "2022-06-16T16:27:29Z"
+        }
+      ]
+    },
+    {
+      "id": "1798e668-8eb3-424f-8af7-6e6da2515b14",
+      "company": "Doyle-Kessler",
+      "industry": "travel",
+      "isActive": true,
+      "about": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
+      "projects": [
+        {
+          "id": "e25fc621-1aed-4898-9714-090f300c75c8",
+          "name": "Grass-roots",
+          "contact": "fsimony1@hostgator.com",
+          "start_date": "2021-10-05T07:33:02Z",
+          "end_date": "2022-05-30T10:40:32Z"
+        },
+        {
+          "id": "64c726d0-c9a2-4a8f-a775-4340da21c721",
+          "name": "dynamic",
+          "contact": "lallibon2@bloglines.com",
+          "start_date": "2022-01-05T11:54:14Z",
+          "end_date": "2022-03-31T17:50:50Z"
+        },
+        {
+          "id": "fa93c65a-0433-479f-bcaa-27fab7b5c57d",
+          "name": "Ergonomic",
+          "contact": "shyslop3@usatoday.com",
+          "start_date": "2021-12-03T22:51:58Z",
+          "end_date": null
+        }
+      ]
+    },
+    {
+      "id": "6c855520-58f0-47a1-8636-21268959e763",
+      "company": "Abbott, Ullrich and Durgan",
+      "industry": "tech",
+      "isActive": false,
+      "about": "Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
+      "projects": [
+        {
+          "id": "4653f575-ae02-4d4b-b938-fc32a77f2196",
+          "name": "bifurcated",
+          "contact": "bmose4@domainmarket.com",
+          "start_date": "2022-02-07T14:38:55Z",
+          "end_date": "2022-04-08T17:10:10Z"
+        },
+        {
+          "id": "5a007770-c624-4b07-a010-03637a56a569",
+          "name": "Expanded",
+          "contact": "gneary5@vkontakte.ru",
+          "start_date": "2021-11-16T23:08:06Z",
+          "end_date": "2022-06-17T21:27:34Z"
+        }
+      ]
+    }
+  ],
+  "removedCustomers": [
+    {
+      "id": "f9c1e893-4408-4933-bdf8-bafca58da854",
       "company": "Effertz, Wisoky and Macejkovic",
       "industry": "insurance",
+      "isActive": true,
+      "about": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
       "projects": [
         {
           "id": "c9ea3170-bc2b-4111-87b9-edb8ad5b6af5",
@@ -334,31 +379,16 @@
           "end_date": "2022-06-26T20:58:16Z"
         }
       ],
-      "about": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat."
+      "isDeleted": true
     },
     {
-      "id": "0f59db8f-4f8d-4eba-b87f-e7304c89d3b8",
+      "id": "csWNrJM",
+      "company": "Test",
+      "industry": "test",
       "isActive": true,
-      "company": "Kutch Inc",
-      "industry": "marketing",
-      "projects": [
-        {
-          "id": "7410fb20-994a-4afa-a185-2d0404673e0d",
-          "name": "Customer-focused",
-          "contact": null,
-          "start_date": "2021-10-20T19:28:03Z",
-          "end_date": null
-        }
-      ],
-      "about": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum."
-    },
-    {
-      "id": "k4OIDYd",
-      "company": "test",
-      "industry": "",
-      "isActive": false,
-      "about": "",
-      "projects": []
+      "about": "test",
+      "projects": [],
+      "isDeleted": true
     }
   ]
 }
