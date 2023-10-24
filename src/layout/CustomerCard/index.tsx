@@ -176,8 +176,6 @@ const CustomerCard: React.FC<CustomerCardProps> = ({
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Updated Customer:", data);
-
         fetchAllCustomers();
         fetchAllRemovedCustomers();
       })
